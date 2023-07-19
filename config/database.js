@@ -1,27 +1,33 @@
 const path = require('path');
 
 
-module.exports = ({ env }) => ({
-  connection: {
-    client: 'postgres',
-    connection: {
-      host: env('DATABASE_HOST'),
-      port: env.int('DATABASE_PORT'),
-      database: env('DATABASE_NAME'),
-      user: env('DATABASE_USERNAME'),
-      password: env('DATABASE_PASSWORD'),
-      ssl: {
-        rejectUnauthorized:env.bool('DATABASE_SSL_SELF', false),
+
+    // strapi-api/config/database.js
+    module.exports = ({ env }) => ({
+      connection: {
+        client: 'postgres',
+        connection: {
+          host: env('DATABASE_HOST'),
+          port: env.int('DATABASE_PORT'),
+          database: env('DATABASE_NAME',),
+          user: env('DATABASE_USERNAME',),
+          password: env('DATABASE_PASSWORD'),
+          schema: env('DATABASE_SCHEMA',), // 
+          ssl: {
+            rejectUnauthorized: env.bool('DATABASE_SSL', true),
+          },
+        },
+        debug: false,
       },
-    },
-    debug: false,
-  },
-});
+    });
+
 
 module.exports = ({ env }) => {
   const client = env('DATABASE_CLIENT', 'sqlite');
 
   const connections = {
+
+    
 
    
     mysql: {
